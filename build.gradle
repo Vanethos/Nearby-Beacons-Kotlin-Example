@@ -25,3 +25,19 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    minSdkVersion = 19
+    targetSdkVersion = 27
+    compileSdkVersion = 27
+    buildToolsVersion = '27.0.2'
+    googlePlayVersion = '11.6.2'
+
+    supportLibraryVersion = '27.1.1'
+    architectureComponentsVersion = '1.1.1'
+    constraintLayoutVersion = '1.1.0-beta+'
+
+    daggerVersion = '2.13'
+    rxJavaVersion = '2.1.7'
+    rxRelayVersion = '2.0.0'
+}
