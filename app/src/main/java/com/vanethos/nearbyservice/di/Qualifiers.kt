@@ -11,4 +11,8 @@ annotation class ActivityContext
 
 @Qualifier
 @Retention
+annotation class ServiceContext
+
+@Qualifier
+@Retention
 annotation class BaseApiUrl

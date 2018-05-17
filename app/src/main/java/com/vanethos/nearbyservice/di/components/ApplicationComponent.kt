@@ -25,6 +25,8 @@ interface ApplicationComponent : AndroidInjector<NearbyApp> {
     interface Builder {
         @BindsInstance
         fun create(app: Application):Builder
-        fun build(): ApplicationComponent
+        fun build():ApplicationComponent
     }
+
+    override fun inject(app: NearbyApp)
 }

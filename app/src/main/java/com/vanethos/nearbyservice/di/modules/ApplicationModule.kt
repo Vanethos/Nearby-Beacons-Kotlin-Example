@@ -13,9 +13,6 @@ import javax.inject.Singleton
  */
 @Module
 abstract class ApplicationModule {
-    @Binds
-    abstract fun application(app: NearbyApp): Application
-
     @Module
     companion object {
         @JvmStatic

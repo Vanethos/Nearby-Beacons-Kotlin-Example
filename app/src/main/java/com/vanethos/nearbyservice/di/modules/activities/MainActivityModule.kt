@@ -1,7 +1,6 @@
 package com.vanethos.nearbyservice.di.modules.activities
 
-import com.vanethos.nearbyservice.MainActivity
-import com.vanethos.nearbyservice.di.ActivityContext
+import com.vanethos.nearbyservice.presentation.MainActivity
 import dagger.Module
 import dagger.Provides
 
