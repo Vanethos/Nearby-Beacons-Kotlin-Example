@@ -8,6 +8,11 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="action_global_offlineFragment">
+                    <value>
+                      <LayoutPositions />
+                    </value>
+                  </entry>
                   <entry key="mainFragment">
                     <value>
                       <LayoutPositions>
@@ -16,15 +21,6 @@
                             <option name="x" value="40" />
                             <option name="y" value="40" />
                           </Point>
-                        </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_mainFragment_to_offlineFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
