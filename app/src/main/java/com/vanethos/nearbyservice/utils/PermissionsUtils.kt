@@ -8,8 +8,10 @@ import com.vanethos.nearbyservice.di.ActivityContext
 import io.reactivex.Observable
 import java.util.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
-class PermissionsUtils @Inject constructor(var activity : AppCompatActivity) {
+
+class PermissionsUtils @Inject constructor(val activity : AppCompatActivity) {
     private val rxPermissions = RxPermissions(activity)
 
     fun ensurePermissions () : Observable<Boolean> = rxPermissions.request(Manifest.permission.ACCESS_FINE_LOCATION)

@@ -5,12 +5,21 @@ import com.vanethos.nearbyservice.utils.ResourceProvider
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-class BaseViewModel constructor(private val resourceProvider: ResourceProvider) : ViewModel() {
-    val compositeDisposable = CompositeDisposable()
+abstract class BaseViewModel constructor(
+        protected val resourceProvider: ResourceProvider
+        ) : ViewModel() {
+    init {
+        initializeViewModel()
+    }
 
+
+
+    open fun initializeViewModel() {}
+
+    val compositeDisposable = CompositeDisposable()
     fun addDisposable(d : Disposable) = compositeDisposable.add(d)
 
-    override fun onCleared() {
+     override fun onCleared() {
         super.onCleared()
         compositeDisposable.clear()
     }
