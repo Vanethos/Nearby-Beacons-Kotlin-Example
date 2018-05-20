@@ -40,10 +40,6 @@ class MainViewModel @Inject constructor(
 
     private val startScanObservable = BehaviorRelay.create<Boolean>()
 
-    fun getInvalidText() : String {
-        return "NOT OK"
-    }
-
     fun getValidText() : String {
         return "OK"
     }

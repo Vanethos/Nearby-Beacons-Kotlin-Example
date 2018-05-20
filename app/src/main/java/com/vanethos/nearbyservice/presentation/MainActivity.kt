@@ -1,8 +1,10 @@
 package com.vanethos.nearbyservice.presentation
 
 import android.annotation.SuppressLint
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.widget.Toast
+import androidx.navigation.findNavController
 import com.tbruyelle.rxpermissions2.RxPermissions
 import com.vanethos.nearbyservice.R
 import com.vanethos.nearbyservice.databinding.ActivityMainBinding
@@ -17,8 +19,6 @@ import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
-
-
 
     override fun getLayoutId(): Int {
         return R.layout.activity_main
@@ -40,11 +40,13 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                                 if (proceed) {
                                     Timber.e("--- ok")
                                     initializeScan()
-                                    binding.textView.text = viewModel.getValidText()
+                                    if (this.findNavController(R.id.nav_host_fragment).currentDestination.id == R.id.offlineFragment) {
+                                        this.findNavController(R.id.nav_host_fragment).popBackStack()
+                                    }
                                 } else {
+                                    this.findNavController(R.id.nav_host_fragment).navigate(R.id.action_global_offlineFragment)
                                     Timber.e("--- error")
                                     Toast.makeText(this, "Please turn permission ON in settings", Toast.LENGTH_LONG)
-                                    binding.textView.text = viewModel.getInvalidText()
                                 }
                          } ,
                         {e -> Timber.e(e)}
@@ -54,4 +56,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     private fun initializeScan() {
 
     }
+
+    override fun onSupportNavigateUp()
+            = findNavController(R.id.nav_host_fragment).navigateUp()
 }
