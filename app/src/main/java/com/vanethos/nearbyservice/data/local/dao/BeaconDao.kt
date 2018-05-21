@@ -1,5 +1,6 @@
 package com.vanethos.nearbyservice.data.local.dao
 
+import android.arch.lifecycle.LiveData
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Delete
 import android.arch.persistence.room.Insert
@@ -11,7 +12,7 @@ import io.reactivex.Flowable
 @Dao
 interface BeaconDao {
     @Query("SELECT * FROM beacons")
-    fun getAll(): Flowable<BeaconEntity>
+    fun getAll(): LiveData<List<BeaconEntity>>
 
 
     @Insert

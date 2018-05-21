@@ -7,11 +7,11 @@ import org.threeten.bp.LocalDateTime
 
 @Entity(tableName = "beacons")
 data class BeaconEntity(
-    @PrimaryKey(autoGenerate = true) val uid: Int = 0,
-    @ColumnInfo(name = "title") val title : String = "",
-    @ColumnInfo(name = "image_url") val imageUrl : String = "",
-    @ColumnInfo(name = "message") val message : String = "",
-    @ColumnInfo(name = "action_url") val actionUrl : String = "",
-    @ColumnInfo(name = "action_message") val actionMessage : String = "",
-    @ColumnInfo(name = "date_added") val dateAdded : LocalDateTime = LocalDateTime.now()
+    @PrimaryKey(autoGenerate = true) var uid: Int = 0,
+    @ColumnInfo(name = "title") var title : String = "",
+    @ColumnInfo(name = "image_url") var imageUrl : String = "",
+    @ColumnInfo(name = "message") var message : String = "",
+    @ColumnInfo(name = "action_url") var actionUrl : String = "",
+    @ColumnInfo(name = "action_message") var actionMessage : String = "",
+    @ColumnInfo(name = "date_added") var dateAdded : LocalDateTime = LocalDateTime.now()
 )

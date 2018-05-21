@@ -1,10 +1,7 @@
 package com.vanethos.nearbyservice.data.local.converters
 
 import android.arch.persistence.room.TypeConverter
-import org.threeten.bp.Instant
-import org.threeten.bp.LocalDate
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.ZoneId
+import org.threeten.bp.*
 
 class Converters {
     @TypeConverter
@@ -13,7 +10,7 @@ class Converters {
     }
 
     @TypeConverter
-    fun dateToLongTime(value : LocalDate) : Long {
-        return value.toEpochDay()
+    fun dateToLongTime(value : LocalDateTime) : Long {
+        return value.toEpochSecond(OffsetDateTime.now().offset)
     }
 }

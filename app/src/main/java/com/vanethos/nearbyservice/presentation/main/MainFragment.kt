@@ -1,9 +1,14 @@
 package com.vanethos.nearbyservice.presentation.main
 
+import android.arch.lifecycle.Observer
+import android.databinding.ViewDataBinding
+import android.support.v7.widget.LinearLayoutManager
 import com.vanethos.nearbyservice.R
 import com.vanethos.nearbyservice.databinding.FragmentMainBinding
 import com.vanethos.nearbyservice.databinding.FragmentOfflineBinding
+import com.vanethos.nearbyservice.domain.models.Beacon
 import com.vanethos.nearbyservice.presentation.ui._base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_main.view.*
 
 class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBinding>() {
     override fun getLayoutId(): Int {
@@ -12,5 +17,13 @@ class MainFragment : BaseFragment<MainFragmentViewModel, FragmentMainBinding>() 
 
     override fun getViewModelClass(): Class<MainFragmentViewModel> {
         return MainFragmentViewModel::class.java
+    }
+
+    override fun initializeViews(binding: FragmentMainBinding?) {
+        val beaconAdapter = BeaconsAdapter(ArrayList<Beacon>())
+        viewModel.getBeacons().observe(this, Observer { beacons -> beaconAdapter.setData(beacons)  })
+        val layoutManager = LinearLayoutManager(context)
+        binding?.mainRecyclerView?.adapter = beaconAdapter
+        binding?.mainRecyclerView?.layoutManager = layoutManager
     }
 }

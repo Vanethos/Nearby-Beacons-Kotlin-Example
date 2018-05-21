@@ -25,7 +25,7 @@ abstract class BaseFragment<ViewModel : BaseViewModel, Binding : ViewDataBinding
     val compositeDisposable = CompositeDisposable()
 
     open fun initializeObservables() {}
-    open fun initializeViews(binding: ViewDataBinding?) {}
+    open fun initializeViews(binding: Binding?) {}
     abstract fun getLayoutId() : Int
     abstract fun getViewModelClass() : Class<ViewModel>
 
