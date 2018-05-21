@@ -19,7 +19,7 @@ class MainFragmentViewModel @Inject constructor(
     }
 
     fun addBeacon() {
-        beaconManager.insertBeacon(Beacon(1, "Cenas",
+        beaconManager.insertBeacon(Beacon( "Cenas",
                 "https://discordapp.com/assets/2c21aeda16de354ba5334551a883b481.png"))
                 .doOnSubscribe({this::addDisposable})
                 .subscribeOn(Schedulers.io())
