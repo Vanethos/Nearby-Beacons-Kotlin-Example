@@ -33,7 +33,7 @@ android {
     productFlavors {
         googleCloudDev {
             dimension "google-cloud"
-            resValue "string", "GoogleApiKey", GoogleApiKey
+            resValue "string", "GoogleApiKey", project.GoogleApiKey
         }
     }
 

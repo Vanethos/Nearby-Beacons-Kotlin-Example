@@ -26,6 +26,12 @@ task clean(type: Delete) {
     delete rootProject.buildDir
 }
 
+Properties props = new Properties()
+props.load(new FileInputStream("$project.rootDir/keys.properties"))
+props.each { prop ->
+    project.ext.set(prop.key, prop.value)
+}
+
 ext {
     minSdkVersion = 21
     targetSdkVersion = 27

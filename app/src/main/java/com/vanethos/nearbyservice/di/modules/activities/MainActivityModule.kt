@@ -14,13 +14,6 @@ import dagger.android.ContributesAndroidInjector
  */
 @Module
 abstract class MainActivityModule : BaseActivityModule<MainActivity>() {
-    @Module
-    companion object {
-        @Provides
-        @JvmStatic
-        fun provideString() : String = "cenas"
-    }
-
     @ContributesAndroidInjector(modules = arrayOf(MainFragmentModule::class))
     abstract fun provideMainFragment() : MainFragment
 

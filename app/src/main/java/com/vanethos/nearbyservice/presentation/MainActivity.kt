@@ -1,22 +1,18 @@
 package com.vanethos.nearbyservice.presentation
 
 import android.annotation.SuppressLint
-import android.databinding.ViewDataBinding
-import android.os.Bundle
+import android.content.Intent
 import android.widget.Toast
 import androidx.navigation.findNavController
-import com.tbruyelle.rxpermissions2.RxPermissions
 import com.vanethos.nearbyservice.R
 import com.vanethos.nearbyservice.databinding.ActivityMainBinding
 import com.vanethos.nearbyservice.presentation.ui._base.BaseActivity
-import com.vanethos.nearbyservice.utils.PermissionsUtils
-import com.vanethos.nearbyservice.utils.ResourceProvider
-import dagger.android.support.DaggerAppCompatActivity
+import com.vanethos.nearbyservice.services.NearbyScanService
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
-import kotlinx.android.synthetic.main.activity_main.*
 import timber.log.Timber
+import android.os.Build
+
 
 class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
 
@@ -54,7 +50,11 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
     }
 
     private fun initializeScan() {
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startForegroundService(Intent(this, NearbyScanService::class.java))
+        } else {
+            startService(Intent(this, NearbyScanService::class.java))
+        }
     }
 
     override fun onSupportNavigateUp()
