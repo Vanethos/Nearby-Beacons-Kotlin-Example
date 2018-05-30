@@ -6,6 +6,7 @@ import com.vanethos.nearbyservice.di.ActivityContext
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import javax.inject.Named
 
 /**
  * Created by goncalopalma on 16/04/2018.
@@ -20,7 +21,7 @@ abstract class BaseActivityModule<in A : AppCompatActivity> {
     companion object {
         @JvmStatic
         @Provides
-        @ActivityContext
+        @Named("ActivityContext")
         fun provideContext(activity: AppCompatActivity): Context = activity
     }
 }

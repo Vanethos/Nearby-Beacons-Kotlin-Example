@@ -1,7 +1,7 @@
 package com.vanethos.nearbyservice.di.modules.activities.builder
 
 import com.vanethos.nearbyservice.di.modules.activities.MainActivityModule
-import com.vanethos.nearbyservice.MainActivity
+import com.vanethos.nearbyservice.presentation.MainActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

@@ -15,5 +15,6 @@ class NearbyApp : DaggerApplication() {
         if (BuildConfig.DEBUG) Timber.plant(Timber.DebugTree())
     }
 
-    override fun applicationInjector(): AndroidInjector<out DaggerApplication> = DaggerApplicationComponent.builder().create(this).build()
+    override fun applicationInjector(): AndroidInjector<out DaggerApplication>
+            = DaggerApplicationComponent.builder().create(this).build()
 }
