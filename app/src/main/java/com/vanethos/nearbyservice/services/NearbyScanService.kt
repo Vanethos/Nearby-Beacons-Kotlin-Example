@@ -10,6 +10,10 @@ import timber.log.Timber
 import android.app.PendingIntent
 import com.google.android.gms.nearby.messages.SubscribeOptions
 import com.vanethos.nearbyservice.utils.BeaconMessageReceiver
+import com.google.android.gms.nearby.messages.NearbyPermissions
+import com.google.android.gms.nearby.messages.MessagesOptions
+
+
 
 
 class NearbyScanService : DaggerService() {
@@ -35,7 +39,11 @@ class NearbyScanService : DaggerService() {
         val options = SubscribeOptions.Builder()
                 .setStrategy(Strategy.BLE_ONLY)
                 .build()
-        Nearby.getMessagesClient(this).subscribe(getPendingIntent(), options)
+        //avoid permission checking since we already have ACCESS_FINE_LOCATION permission
+        Nearby.getMessagesClient(this, MessagesOptions.Builder()
+                .setPermissions(NearbyPermissions.BLE)
+                .build())
+                .subscribe(getPendingIntent(), options)
                 .addOnSuccessListener { Timber.i("Connected to Nearby Messages") }
                 .addOnFailureListener { Timber.e(it) }
     }

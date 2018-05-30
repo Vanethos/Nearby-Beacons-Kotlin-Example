@@ -38,7 +38,7 @@ class BeaconsAdapter(var beacons : List<Beacon>) : RecyclerView.Adapter<BeaconsA
     class BeaconViewHolder(val binding: ItemBeaconBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(beacon : Beacon?) {
             binding.item = beacon
-            binding.root.clipToOutline = false
+            binding.root.clipToOutline = true
         }
     }
 }

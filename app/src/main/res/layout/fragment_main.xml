@@ -13,9 +13,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent"
-        tools:context=".presentation.MainActivity"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp">
+        tools:context=".presentation.MainActivity">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/main_recyclerView"
@@ -24,30 +22,24 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/addButton"
+            app:layout_constraintBottom_toTopOf="@id/deleteButton"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
             tools:listitem="@layout/item_beacon"/>
 
 
         <Button
-            android:id="@+id/addButton"
-            android:text="Add Beacon"
+            android:id="@+id/deleteButton"
+            style="@android:style/Widget.Material.Button.Borderless.Colored"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.addBeacon()}"
+            android:foreground="?android:attr/selectableItemBackground"
+            android:background="@color/colorAccent"
+            android:onClick="@{() -> viewModel.deleteBeacons()}"
+            android:text="Delete Beacons"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@id/deleteButton"
-            />
-
-        <Button
-            android:id="@+id/deleteButton"
-            android:text="Delete Beaconss"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:onClick="@{() -> viewModel.deleteBeacons()}"
-            app:layout_constraintLeft_toRightOf="@id/addButton"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            />
+            app:layout_constraintRight_toRightOf="parent" />
     </android.support.constraint.ConstraintLayout>
 </layout>

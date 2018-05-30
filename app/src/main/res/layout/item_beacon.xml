@@ -18,6 +18,7 @@
            android:layout_width="100dp"
            android:layout_height="100dp"
            app:imageUrl="@{item.imageUrl}"
+           android:scaleType="centerCrop"
            tools:src="@drawable/ic_launcher_background"/>
 
         <TextView

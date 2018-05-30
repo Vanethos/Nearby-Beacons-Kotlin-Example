@@ -1,5 +1,6 @@
 package com.vanethos.nearbyservice.presentation.main
 
+import android.annotation.SuppressLint
 import android.arch.lifecycle.LiveData
 import com.vanethos.nearbyservice.domain.managers.BeaconManager
 import com.vanethos.nearbyservice.domain.models.Beacon
@@ -18,17 +19,8 @@ class MainFragmentViewModel @Inject constructor(
         return beaconManager.getBeacons()
     }
 
-    fun addBeacon() {
-        beaconManager.insertBeacon(Beacon( "Cenas",
-                "https://discordapp.com/assets/2c21aeda16de354ba5334551a883b481.png"))
-                .doOnSubscribe({this::addDisposable})
-                .subscribeOn(Schedulers.io())
-                .subscribe(
-                        { Timber.d("---- Beacon added")},
-                        { error -> Timber.e(error) }
-                )
-    }
 
+    @SuppressLint("CheckResult")
     fun deleteBeacons() {
         beaconManager.deleteAllBeacons()
                 .doOnSubscribe({this::addDisposable})

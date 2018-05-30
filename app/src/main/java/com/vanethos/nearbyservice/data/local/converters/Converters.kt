@@ -6,7 +6,7 @@ import org.threeten.bp.*
 class Converters {
     @TypeConverter
     fun longTimeToDate(value : Long) : LocalDateTime {
-        return LocalDateTime.ofInstant(Instant.ofEpochMilli(value), ZoneId.systemDefault())
+        return LocalDateTime.ofInstant(Instant.ofEpochSecond(value), ZoneId.systemDefault())
     }
 
     @TypeConverter

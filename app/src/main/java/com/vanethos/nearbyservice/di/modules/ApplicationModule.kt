@@ -9,7 +9,8 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
 import android.arch.persistence.room.Room
-
+import com.google.gson.Gson
+import com.google.gson.GsonBuilder
 
 
 /**
@@ -28,5 +29,9 @@ abstract class ApplicationModule {
         fun provideDatabase(application: Application): AppDatabase = Room.databaseBuilder(application,
                 AppDatabase::class.java, "beacon-repository").build()
 
+
+        @JvmStatic
+        @Provides
+        fun providesGson() : Gson = GsonBuilder().create()
     }
 }

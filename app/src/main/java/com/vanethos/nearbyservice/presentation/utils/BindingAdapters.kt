@@ -18,6 +18,6 @@ object BindingAdapters {
     @JvmStatic
     @BindingAdapter("app:dateText")
     fun setImageUrl(view: TextView, date: LocalDateTime) {
-        view.setText("${date.dayOfWeek} of ${date.dayOfMonth}, ${date.year}")
+        view.setText("${date.dayOfMonth} of ${date.month}, ${date.year}")
     }
 }
