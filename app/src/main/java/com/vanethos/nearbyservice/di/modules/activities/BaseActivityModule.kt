@@ -21,7 +21,7 @@ abstract class BaseActivityModule<in A : AppCompatActivity> {
     companion object {
         @JvmStatic
         @Provides
-        @Named("ActivityContext")
+        @ActivityContext
         fun provideContext(activity: AppCompatActivity): Context = activity
     }
 }

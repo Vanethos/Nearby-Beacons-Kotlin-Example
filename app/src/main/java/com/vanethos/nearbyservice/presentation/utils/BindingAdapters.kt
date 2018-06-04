@@ -1,6 +1,7 @@
 package com.vanethos.nearbyservice.presentation.utils
 
 import android.databinding.BindingAdapter
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
@@ -19,5 +20,11 @@ object BindingAdapters {
     @BindingAdapter("app:dateText")
     fun setImageUrl(view: TextView, date: LocalDateTime) {
         view.setText("${date.dayOfMonth} of ${date.month}, ${date.year}")
+    }
+
+    @JvmStatic
+    @BindingAdapter("android:visibility")
+    fun setVisibility(view: View, visible : Boolean) {
+        if (visible) view.visibility = View.VISIBLE else view.visibility = View.GONE
     }
 }

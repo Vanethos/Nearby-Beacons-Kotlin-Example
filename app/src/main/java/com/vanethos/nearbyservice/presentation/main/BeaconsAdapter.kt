@@ -11,12 +11,12 @@ import com.vanethos.nearbyservice.R
 import com.vanethos.nearbyservice.databinding.ItemBeaconBinding
 import com.vanethos.nearbyservice.domain.models.Beacon
 
-class BeaconsAdapter(var beacons : List<Beacon>) : RecyclerView.Adapter<BeaconsAdapter.BeaconViewHolder>() {
+class BeaconsAdapter(var beacons : List<Beacon>, var clickListener : (Beacon) -> Unit) : RecyclerView.Adapter<BeaconsAdapter.BeaconViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BeaconViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding = DataBindingUtil.inflate<ItemBeaconBinding>(inflater, R.layout.item_beacon, parent, false)
-        return BeaconViewHolder(binding)
+        return BeaconViewHolder(binding, clickListener)
     }
 
     override fun getItemCount(): Int {
@@ -35,10 +35,11 @@ class BeaconsAdapter(var beacons : List<Beacon>) : RecyclerView.Adapter<BeaconsA
     }
 
 
-    class BeaconViewHolder(val binding: ItemBeaconBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(beacon : Beacon?) {
+    class BeaconViewHolder(val binding: ItemBeaconBinding, val clickListener: (Beacon) -> Unit) : RecyclerView.ViewHolder(binding.root) {
+        fun bind(beacon : Beacon) {
             binding.item = beacon
             binding.root.clipToOutline = true
+            binding.root.setOnClickListener{ clickListener(beacon) }
         }
     }
 }

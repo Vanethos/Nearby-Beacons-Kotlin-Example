@@ -1,8 +1,10 @@
 package com.vanethos.nearbyservice.di.modules.activities
 
+import com.vanethos.nearbyservice.di.modules.fragments.DetailFragmentModule
 import com.vanethos.nearbyservice.di.modules.fragments.MainFragmentModule
 import com.vanethos.nearbyservice.di.modules.fragments.OfflineFragmentModule
 import com.vanethos.nearbyservice.presentation.MainActivity
+import com.vanethos.nearbyservice.presentation.detail.DetailFragment
 import com.vanethos.nearbyservice.presentation.main.MainFragment
 import com.vanethos.nearbyservice.presentation.offline.OfflineFragment
 import dagger.Module
@@ -19,4 +21,7 @@ abstract class MainActivityModule : BaseActivityModule<MainActivity>() {
 
     @ContributesAndroidInjector(modules = arrayOf(OfflineFragmentModule::class))
     abstract fun provideOfflineFragment() : OfflineFragment
+
+    @ContributesAndroidInjector(modules = arrayOf(DetailFragmentModule::class))
+    abstract fun provideDetailFragment() : DetailFragment
 }

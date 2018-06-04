@@ -1,5 +1,6 @@
 package com.vanethos.nearbyservice.presentation.ui._base
 
+import android.app.Activity
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
@@ -26,12 +27,18 @@ abstract class BaseFragment<ViewModel : BaseViewModel, Binding : ViewDataBinding
 
     open fun initializeObservables() {}
     open fun initializeViews(binding: Binding?) {}
+    open fun initArgument(args : Bundle?) {}
     abstract fun getLayoutId() : Int
     abstract fun getViewModelClass() : Class<ViewModel>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         return binding.root
+    }
+
+    override fun onAttach(activity: Activity?) {
+        initArgument(arguments)
+        super.onAttach(activity)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
