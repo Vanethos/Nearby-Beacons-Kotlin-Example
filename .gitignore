@@ -260,6 +260,6 @@ gradle-app.setting
 # gradle/wrapper/gradle-wrapper.properties
 
 #ignore keys.properties
-keys.properties
+#keys.properties
 
 # End of https://www.gitignore.io/api/macos,gradle,android,intellij,androidstudio
