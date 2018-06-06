@@ -10,6 +10,7 @@ import com.vanethos.nearbyservice.R
 import com.vanethos.nearbyservice.databinding.FragmentMainBinding
 import com.vanethos.nearbyservice.databinding.FragmentOfflineBinding
 import com.vanethos.nearbyservice.domain.models.Beacon
+import com.vanethos.nearbyservice.presentation.MainActivity
 import com.vanethos.nearbyservice.presentation.ui._base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_main.view.*
 

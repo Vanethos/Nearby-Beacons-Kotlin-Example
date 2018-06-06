@@ -27,18 +27,22 @@ abstract class BaseActivity<ViewModel : BaseViewModel, Binding : ViewDataBinding
     val compositeDisposable = CompositeDisposable()
 
     open fun initializeObservables() {}
+    open fun initArguments(bundle: Bundle?) {}
     open fun initializeViews(binding: ViewDataBinding?) {}
+    open fun setupNavigation() {}
     abstract fun getLayoutId() : Int
     abstract fun getViewModelClass() : Class<ViewModel>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        initArguments(intent.extras)
         super.onCreate(savedInstanceState)
 
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(getViewModelClass())
         binding = DataBindingUtil.setContentView(this, getLayoutId())
         binding.setVariable(BR.viewModel, viewModel)
         initializeViews(binding)
+        setupNavigation()
     }
 
     override fun onStart() {

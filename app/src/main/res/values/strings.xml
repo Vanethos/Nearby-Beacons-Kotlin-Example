@@ -3,4 +3,5 @@
     <string name="lbl_connect_to_internet">Please connect to the internet</string>
     <string name="notification_channel_name">Channel Name</string>
     <string name="notification_channel_description">Channel Description</string>
+    <string name="notification_empty">Beacon already discovered</string>
 </resources>

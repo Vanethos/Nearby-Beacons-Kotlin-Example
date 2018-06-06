@@ -14,6 +14,7 @@ import android.app.NotificationManager
 import android.app.Activity
 import android.graphics.Color
 import android.support.annotation.RequiresApi
+import android.support.v4.app.NotificationManagerCompat
 import com.vanethos.nearbyservice.domain.models.Beacon
 import javax.inject.Singleton
 
@@ -34,7 +35,7 @@ class NotificationUtils @Inject constructor(val context: Context) {
     val channelId = "channel_id"
 
     fun getForegroundNotification(context: Context) : Notification {
-            val notificationIntent = Intent(context, MainActivity::class.java)
+        val notificationIntent = Intent(context, MainActivity::class.java)
 
         notificationIntent.setAction(Intent.ACTION_MAIN)
         notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER)
@@ -54,6 +55,21 @@ class NotificationUtils @Inject constructor(val context: Context) {
 
     fun sendBeaconNotification(context: Context, beacon : Beacon) {
 
+    }
+
+    fun sendNotification(context: Context, string: String, intent: Intent, id : Int) {
+        val pendingIntent = PendingIntent.getActivity(context, 0,
+                intent, 0)
+
+        var notification = NotificationCompat.Builder(context, EVENT_CHANNEL_ID)
+                .setContentTitle(string)
+                .setContentText("Beacon")
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setContentIntent(pendingIntent)
+                .setOngoing(true)
+                .build()
+
+        NotificationManagerCompat.from(context).notify(id, notification)
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)

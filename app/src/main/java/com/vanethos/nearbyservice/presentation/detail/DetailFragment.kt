@@ -9,6 +9,7 @@ import com.vanethos.nearbyservice.BUNDLE_BEACON
 import com.vanethos.nearbyservice.R
 import com.vanethos.nearbyservice.databinding.FragmentBeaconDetailBinding
 import com.vanethos.nearbyservice.domain.models.Beacon
+import com.vanethos.nearbyservice.presentation.MainActivity
 import com.vanethos.nearbyservice.presentation.ui._base.BaseFragment
 import io.reactivex.schedulers.Schedulers
 import timber.log.Timber
@@ -19,6 +20,10 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentBeaconDetailBinding
 
     override fun initArgument(args: Bundle?) {
         beacon = arguments!!.getParcelable(BUNDLE_BEACON)
+    }
+
+    override fun initializeViews(binding: FragmentBeaconDetailBinding?) {
+        (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun getLayoutId(): Int {
@@ -50,5 +55,8 @@ class DetailFragment : BaseFragment<DetailViewModel, FragmentBeaconDetailBinding
         }
     }
 
-
+    override fun onDetach() {
+        super.onDetach()
+        (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(false)
+    }
 }

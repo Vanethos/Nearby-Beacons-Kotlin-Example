@@ -10,8 +10,10 @@ import com.google.android.gms.nearby.messages.Distance
 import com.google.android.gms.nearby.messages.Message
 import com.google.android.gms.nearby.messages.MessageListener
 import com.google.gson.JsonSyntaxException
+import com.vanethos.nearbyservice.R
 import com.vanethos.nearbyservice.domain.managers.BeaconManager
 import com.vanethos.nearbyservice.domain.models.Beacon
+import com.vanethos.nearbyservice.presentation.MainActivity
 import dagger.android.DaggerIntentService
 import io.reactivex.Single
 import io.reactivex.SingleObserver
@@ -24,8 +26,13 @@ import javax.inject.Inject
 
 class BeaconMessageReceiver : DaggerIntentService("BeaconMessageReceiver") {
 
+    var noBeaconId = 1000
+    var foundBeaconId = 1001
+
     @Inject
     lateinit var beaconManager : BeaconManager
+    @Inject
+    lateinit var notificationUtils: NotificationUtils;
 
     override fun onHandleIntent(intent: Intent?) {
         intent?.let {
@@ -38,8 +45,18 @@ class BeaconMessageReceiver : DaggerIntentService("BeaconMessageReceiver") {
                             beaconManager.getBeaconById(beacon.id)
                                     .flatMap {
                                         if (!it) {
+                                            notificationUtils.sendNotification(applicationContext,
+                                                    beacon.title,
+                                                    MainActivity.getIntent(applicationContext, beacon),
+                                                    foundBeaconId)
                                             return@flatMap Single.just(it)
                                         }
+                                        notificationUtils.sendNotification(
+                                                applicationContext,
+                                                applicationContext.getString(R.string.notification_empty),
+                                                Intent(applicationContext, MainActivity::class.java),
+                                                noBeaconId
+                                        )
                                         throw Exception("Beacon already on DB")
                                     }
                                     .toCompletable()
