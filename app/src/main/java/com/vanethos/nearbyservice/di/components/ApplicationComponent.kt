@@ -4,6 +4,7 @@ import android.app.Application
 import com.vanethos.nearbyservice.di.modules.activities.builder.ActivityBinding
 import com.vanethos.nearbyservice.NearbyApp
 import com.vanethos.nearbyservice.di.ApplicationModule
+import com.vanethos.nearbyservice.di.modules.services.builder.ServiceBinding
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -18,6 +19,7 @@ import javax.inject.Singleton
 @Component(modules = arrayOf(
         ApplicationModule::class,
         ActivityBinding::class,
+        ServiceBinding::class,
         AndroidSupportInjectionModule::class
 ))
 interface ApplicationComponent : AndroidInjector<NearbyApp> {
@@ -25,6 +27,8 @@ interface ApplicationComponent : AndroidInjector<NearbyApp> {
     interface Builder {
         @BindsInstance
         fun create(app: Application):Builder
-        fun build(): ApplicationComponent
+        fun build():ApplicationComponent
     }
+
+    override fun inject(app: NearbyApp)
 }

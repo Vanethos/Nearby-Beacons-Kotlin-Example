@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:startDestination="@id/mainFragment">
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.vanethos.nearbyservice.presentation.main.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_detailFragment"
+            app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/offlineFragment"
+        android:name="com.vanethos.nearbyservice.presentation.offline.OfflineFragment"
+        android:label="OfflineFragment" />
+    <action
+        android:id="@+id/action_global_offlineFragment"
+        app:destination="@id/offlineFragment"
+        app:enterAnim="@anim/nav_default_enter_anim"
+        app:exitAnim="@anim/nav_default_exit_anim"
+        app:popEnterAnim="@anim/nav_default_enter_anim"
+        app:popExitAnim="@anim/nav_default_exit_anim" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.vanethos.nearbyservice.presentation.detail.DetailFragment"
+        android:label="DetailFragment" >
+        <argument android:name="beacon" />
+    </fragment>
+</navigation>
